@@ -34,7 +34,7 @@ class RegisterAdminController extends Controller
       'email'=>request()->email,
       'password'=>Hash::make(request()->password),
       ]);
-      return redirect('admin/register')->with('pesan','Data Berhasil Di Tambahkan');
+      return redirect('admin/login')->with('pesan','Data Berhasil Di Tambahkan');
    }
 
 }
