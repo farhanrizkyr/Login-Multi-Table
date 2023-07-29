@@ -8,10 +8,16 @@ use App\Models\Admin;
 use Hash;
 class RegisterAdminController extends Controller
 {
+
+     public function __construct()
+{
+   $this->middleware('auth:admin');
+}
   
     public function register()
    {
-       return view('Admin.register');
+    $user=Admin::latest()->get();
+       return view('Admin.register',compact('user'));
    }
 
     public function post_register($value='')
@@ -31,7 +37,7 @@ class RegisterAdminController extends Controller
       'email'=>request()->email,
       'password'=>Hash::make(request()->password),
       ]);
-      return redirect('admin/login');
+      return redirect('admin/register')->with('pesan','Data Berhasil Di Tambahkan');
    }
 
 }
